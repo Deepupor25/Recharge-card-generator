@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+    body{
+        /* background-color: rgb(177, 177, 33); */
+        background-color: blanchedalmond;
+        
+    }
+    #main{
+        background-color: white;
+        line-height: 40px;
+        margin-left: 500px;
+        margin-top: 40px;
+        width: fit-content;
+        padding: 15px;
+        border-radius: 40px;
+    }
+    #amount, #network{
+        padding: 2px;
+        margin-left: 10px;
+        border: none;
+        border-radius: 4px;
+        width: 120px;
+        height: 30px;
+    }
+    #gg{
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        width: 300px;
+    }
+    #ggaa{
+        width: 280px;
+        /* background-color: aquamarine; */
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+    #logo{
+        align-items: center;
+        text-align: center;
+    }
+    </style>
+</head>
+<body>
+
+    <main id="main">
+        <h1  style="font-family: 'Times New Roman', Times, serif;">Network Provider PIN Generator</h1>
+        <div id="ggaa">
+            <h3 style="font-family: 'Times New Roman', Times, serif;">Choose Network:</h3>
+            <select name="" id="network" onclick="networks()">
+                <option value="Select option">Select Options</option>
+                <option value="MTN">MTN</option>
+                <option value="Glo">Glo</option>
+                <option value="Airtel">Airtel</option>
+                <option value="9Mobile">9Mobile</option>
+            </select>
+        </div>
+       <div id="gg">
+            <h3 style="font-family: 'Times New Roman', Times, serif;">Amount:</h3>
+            <select name="" id="amount">
+                <option value="100">100</option>
+                <option value="200">200</option>
+                <option value="500">500</option>
+                <option value="1000">1000</option>
+            </select>
+            <button onclick="generatePin()" style="border: none; background-color: bisque;border-radius: 3px; padding: 12px;">Generate</button>
+       </div>
+       <h1 id="genPin"></h1>
+        <input id="enterHere" type="text" placeholder="*311*Generated Pin#" style="border: none; background-color: bisque; border-radius: 3px; padding: 12px;">
+        <button onclick="recharge()" style="border: none; background-color: bisque;border-radius: 3px; padding: 12px;">Recharge</button>
+
+        <h1 id="balance"></h1>
+        <h1 id="balance1"></h1>
+        <h1 id="balance2"></h1>
+        <h1 id="balance3"></h1>
+        <p id="logo"></p>         
+    </main>
+</body>
+</html>
+
+
+<script>
+    let main = document.getElementById('main')
+    let network = document.getElementById('network')
+    let genPin = document.getElementById('genPin')
+    let enterHere = document.getElementById('enterHere')
+    let balance = document.getElementById('balance')
+    let balance1 = document.getElementById('balance1')
+    let balance2 = document.getElementById('balance2')
+    let balance3 = document.getElementById('balance3')
+    let total = 0
+    let total1 = 0
+    let total2 = 0
+    let total3 = 0
+    let logo = document.getElementById('logo')
+
+    function networks(){
+        if (network.value == ""){
+            main.style.backgroundColor = "white"
+            logo.innerHTML = ``
+        } else if (network.value == "MTN"){
+            main.style.backgroundColor = "yellow"
+            logo.innerHTML = `<img src="New-mtn-logo-removebg-preview.png" alt="" style="width: 150px;height: 150px;">`
+            balance.innerHTML = `MTN Balance: ${total}`
+            balance1.innerHTML = ""
+            balance2.innerHTML = ""
+            balance3.innerHTML = ""
+        } else if (network.value == "Glo"){
+            main.style.backgroundColor = "lightgreen"
+            logo.innerHTML = `<img src="unlimited_glo-removebg-preview.png" alt="" style="width: 250px;height: 250px;">`
+            balance1.innerHTML = `Glo Balance: ${total1}`
+            balance.innerHTML = ""
+            balance2.innerHTML = ""
+            balance3.innerHTML = ""
+        } else if (network.value == "Airtel"){
+            main.style.backgroundColor = "red"
+            logo.innerHTML = `<img src="airtel-logo-439F62AEA0-seeklogo.com-removebg-preview.png" alt="" style="width: 150px;height: 150px;">`
+            balance2.innerHTML = `Airtel Balance: ${total2}`
+            balance.innerHTML = ""
+            balance1.innerHTML = ""
+            balance3.innerHTML = ""
+        } else if (network.value == "9Mobile"){
+            main.style.backgroundColor = "green"
+            logo.innerHTML = `<img src="9mobile-icon-295x512-n7s4ssgv-removebg-preview.png" alt="" style="width: 120px;height: 160px;">`
+            balance3.innerHTML = `9Mobile Balance: ${total3}`
+            balance.innerHTML = ""
+            balance2.innerHTML = ""
+            balance1.innerHTML = ""
+        }
+    }
+    function generatePin(){
+        let randomNumbers = Math.floor(Math.random() * 1000000000000000)
+        // genPin.innerHTML =  randomNumbers
+        // alert(`You have generated ${network.value} of ${amount.value}`)
+        // console.log(randomNumbers);
+        if(network.value == "Select option"){
+            alert(`Please, select a network provider. Thank you!`)
+        } else if (network.value == "MTN"){
+            genPin.innerHTML =  randomNumbers
+            alert(`You have generated ${network.value} of ${amount.value}`)
+            console.log(randomNumbers);
+        } else if (network.value == "Glo"){
+            genPin.innerHTML =  randomNumbers
+            alert(`You have generated ${network.value} of ${amount.value}`)
+            console.log(randomNumbers);
+        } else if (network.value == "Airtel"){
+            genPin.innerHTML =  randomNumbers
+            alert(`You have generated ${network.value} of ${amount.value}`)
+            console.log(randomNumbers);
+        } else if (network.value == "9Mobile"){
+            genPin.innerHTML =  randomNumbers
+            alert(`You have generated ${network.value} of ${amount.value}`)
+            console.log(randomNumbers);
+        }
+
+    }
+    function recharge(){
+     if (enterHere.value = `*311*${genPin}#`) {
+        // alert(`Your recharge of ${amount.value} on ${network.value} is successful`)
+        enterHere.value = ""
+        // balance.innerHTML = `Balance: ${total += Number(amount.value)}`
+        if (network.value == "MTN"){
+            alert(`Your recharge of ${amount.value} on ${network.value} is successful`)
+            balance.innerHTML = `MTN Balance: ${total += Number(amount.value)}`
+            balance1.innerHTML = ""
+            balance2.innerHTML = ""
+            balance3.innerHTML = ""
+            genPin.innerHTML = ""
+        } else if (network.value == "Glo"){
+            alert(`Your recharge of ${amount.value} on ${network.value} is successful`)
+            balance1.innerHTML = `Glo Balance: ${total1 += Number(amount.value)}`
+            balance.innerHTML = ""
+            balance2.innerHTML = ""
+            balance3.innerHTML = ""
+            genPin.innerHTML = ""
+        }else if (network.value == "Airtel"){
+            alert(`Your recharge of ${amount.value} on ${network.value} is successful`)
+            balance2.innerHTML = `Airtel Balance: ${total2 += Number(amount.value)}`
+            balance.innerHTML = ""
+            balance1.innerHTML = ""
+            balance3.innerHTML = ""
+            genPin.innerHTML = ""
+        }else if (network.value == "9Mobile"){
+            alert(`Your recharge of ${amount.value} on ${network.value} is successful`)
+            balance3.innerHTML = `9Mobile Balance: ${total3 += Number(amount.value)}`
+            balance.innerHTML = ""
+            balance2.innerHTML = ""
+            balance1.innerHTML = ""
+            genPin.innerHTML = ""
+        } else if (network.value == "Select option"){
+            alert(`Please, select a network provider. Thank you!`)
+        }
+     }   else {
+        alert("Invalid Pin")
+     }
+    }
+</script>
