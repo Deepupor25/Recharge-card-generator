@@ -134,10 +134,11 @@
         }
     }
     function generatePin(){
-        let randomNumbers = Math.floor(Math.random() * 1000000000000000)
-        // genPin.innerHTML =  randomNumbers
-        // alert(`You have generated ${network.value} of ${amount.value}`)
-        // console.log(randomNumbers);
+        let randomNumbers = ""
+        
+        for (let i = 0; i < 15; i++){
+            randomNumbers += Math.floor(Math.random() * 10)
+        }
         if(network.value == "Select option"){
             alert(`Please, select a network provider. Thank you!`)
         } else if (network.value == "MTN"){
@@ -160,42 +161,45 @@
 
     }
     function recharge(){
-     if (enterHere.value = `*311*${genPin}#`) {
-        // alert(`Your recharge of ${amount.value} on ${network.value} is successful`)
-        enterHere.value = ""
-        // balance.innerHTML = `Balance: ${total += Number(amount.value)}`
-        if (network.value == "MTN"){
+
+        let randomNumbers = document.getElementById('genPin').innerHTML
+
+        if (network.value == "MTN" && enterHere.value == `*311*${randomNumbers}#`){
             alert(`Your recharge of ${amount.value} on ${network.value} is successful`)
             balance.innerHTML = `MTN Balance: ${total += Number(amount.value)}`
             balance1.innerHTML = ""
             balance2.innerHTML = ""
             balance3.innerHTML = ""
             genPin.innerHTML = ""
-        } else if (network.value == "Glo"){
+            enterHere.value = ""
+        } else if (network.value == "Glo" && enterHere.value == `*311*${randomNumbers}#`){
             alert(`Your recharge of ${amount.value} on ${network.value} is successful`)
             balance1.innerHTML = `Glo Balance: ${total1 += Number(amount.value)}`
             balance.innerHTML = ""
             balance2.innerHTML = ""
             balance3.innerHTML = ""
             genPin.innerHTML = ""
-        }else if (network.value == "Airtel"){
+            enterHere.value = ""
+        }else if (network.value == "Airtel" && enterHere.value == `*311*${randomNumbers}#`){
             alert(`Your recharge of ${amount.value} on ${network.value} is successful`)
             balance2.innerHTML = `Airtel Balance: ${total2 += Number(amount.value)}`
             balance.innerHTML = ""
             balance1.innerHTML = ""
             balance3.innerHTML = ""
             genPin.innerHTML = ""
-        }else if (network.value == "9Mobile"){
+            enterHere.value = ""
+        }else if (network.value == "9Mobile" && enterHere.value == `*311*${randomNumbers}#`){
             alert(`Your recharge of ${amount.value} on ${network.value} is successful`)
             balance3.innerHTML = `9Mobile Balance: ${total3 += Number(amount.value)}`
             balance.innerHTML = ""
             balance2.innerHTML = ""
             balance1.innerHTML = ""
             genPin.innerHTML = ""
+            enterHere.value = ""
         } else if (network.value == "Select option"){
             alert(`Please, select a network provider. Thank you!`)
         }
-     }   else {
+       else {
         alert("Invalid Pin")
      }
     }
